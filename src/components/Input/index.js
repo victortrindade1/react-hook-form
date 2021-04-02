@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text, TextInput } from 'react-native';
+import { Text } from 'react-native';
 import { Controller } from 'react-hook-form';
-import { Container } from './styles';
+import { Container TInput } from './styles';
 
 const Input = ({ control, errors, title, name, style, ...props }) => {
   /**
@@ -16,8 +16,8 @@ const Input = ({ control, errors, title, name, style, ...props }) => {
       <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (
-          <TextInput
-            style={style}
+          <TInput
+            // style={style} (até pode, mas vai pegar o msm css do container)
             placeholder={title}
             onBlur={onBlur}
             onChangeText={(item) => onChange(item)}
