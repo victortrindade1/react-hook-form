@@ -1,19 +1,26 @@
 import React from 'react';
-import { TextInput, Text } from 'react-native';
+import { Text, TextInput } from 'react-native';
 import { Controller } from 'react-hook-form';
-// import { TInput } from './styles';
+import { Container } from './styles';
 
-const Input = ({ control, errors, title, name, ...props }) => {
-  // console.log(errors);
+const Input = ({ control, errors, title, name, style, ...props }) => {
+  /**
+   * Passando style como parâmetro pro container e pro Input faz com q
+   * estilizemos ambos juntos. Posso mudar fonte do texto, como posso mudar cor
+   * do background, no mesmo styled component. Não sei ainda se há implicações,
+   * mas funcionou
+   */
+
   return (
-    <>
+    <Container style={style}>
       <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (
           <TextInput
+            style={style}
             placeholder={title}
             onBlur={onBlur}
-            onChangeText={item => onChange(item)}
+            onChangeText={(item) => onChange(item)}
             value={value}
             {...props}
           />
@@ -23,7 +30,7 @@ const Input = ({ control, errors, title, name, ...props }) => {
         defaultValue=""
       />
       {errors[name] && <Text>{errors[name].message}</Text>}
-    </>
+    </Container>
   );
 };
 

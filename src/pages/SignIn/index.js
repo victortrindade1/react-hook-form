@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Button } from 'react-native';
+import { Button } from 'react-native';
 import { useForm } from 'react-hook-form';
-import Input from '../../components/Input';
 import { Container, LoginInput } from './styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -12,12 +11,12 @@ const validationSchema = Yup.object().shape({
     .required('This is required'),
 });
 
-const pages = () => {
+function pages() {
   const { control, handleSubmit, errors } = useForm({
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = (data) => console.log(data);
 
   return (
     <>
@@ -32,6 +31,6 @@ const pages = () => {
       <Button title="Entrar" onPress={handleSubmit(onSubmit)} />
     </>
   );
-};
+}
 
 export default pages;
